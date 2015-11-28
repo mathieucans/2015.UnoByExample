@@ -1,0 +1,33 @@
+!*> Liens techniques
+!path Uno.Feature\bin\${TARGET}\Uno.Feature.dll
+!path Uno.Feature\bin\${TARGET}\*.dll
+!define TEST_SYSTEM {slim}
+|Import     |
+|Uno.Feature|
+*!
+!1 Règles de base
+108 cartes, réparties en 4 couleurs, numérotées de 0 à 9 et cartes spéciales.
+Le talon : La première carte de la pioche est posée face visible à côté de la pioche, afin de commencer le talon.
+A part les cartes "joker", seules les cartes de même couleur ou de même signe peuvent être posées.
+!2 Exemples avec des cartes de même couleur ou signe
+!img ./files/images/Normales.jpg
+|script|Etant donné la dispositon des joueurs A,B ,C ,D              |
+|ensure|Si la carte talon est        |un 9 rouge                     |
+|check |Alors c'est le tour du joueur|A                              |
+|ensure|Le joueur                    |A|peut poser       |un 9 bleu  |
+|ensure|Le joueur                    |A|peut poser       |un 0 rouge |
+|ensure|Le joueur                    |A|ne peut pas poser|un 0 bleu  |
+|ensure|Le joueur                    |A|peut poser       |un +2 rouge|
+
+
+!*< hide
+!2 Exemples avec des cartes joker
+!img ./files/images/Jokers.jpg
+|Comment                                                            |
+|script|Etant donné la dispositon des joueurs A,B ,C ,D             |
+|ensure|Si la carte talon est        |un 9 rouge                    |
+|check |Alors c'est le tour du joueur|A                             |
+|ensure|Le joueur                    |A|peut poser       |un joker  |
+|ensure|Le joueur                    |A|peut poser       |un +4     |
+|ensure|Le joueur                    |A|ne peut pas poser|un +2 vert|
+*!
