@@ -4,16 +4,16 @@ namespace Uno.Feature
 {
 	public class PlayCardPushCard : IRule
 	{
-		private List<UnoCard> playedCardSet;
+		private readonly Stack<UnoCard> _playedCardSet;
 
-		public PlayCardPushCard(List<UnoCard> playedCardSet)
+		public PlayCardPushCard(Stack<UnoCard> playedCardSet)
 		{
-			this.playedCardSet = playedCardSet;
+			_playedCardSet = playedCardSet;
 		}
 
 		public void Apply(Player player, UnoCard card)
 		{
-			playedCardSet.Add(card);
+			_playedCardSet.Push(card);
 		}
 	}
 }

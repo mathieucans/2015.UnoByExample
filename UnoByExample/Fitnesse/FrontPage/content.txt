@@ -2,7 +2,7 @@
 
 !img ./files/images/UNO_Karten.jpg
  * [[Règles de base][>1ReglesDeBase]]
-
+ * [[La carte « Passer / Passe ton tour »][>2CartePasseTonTour]]
 
 ----
 !contents -R2 -g -f

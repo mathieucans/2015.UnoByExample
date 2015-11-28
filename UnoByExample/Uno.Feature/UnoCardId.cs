@@ -9,12 +9,12 @@
 		DrawTwo,
 		Wild,
 		WildDrawFour,
-		One,
 		Seven,
 		Six,
 		Five,
 		Four,
 		Three,
-		Two
+		Two,
+		One
 	}
 }

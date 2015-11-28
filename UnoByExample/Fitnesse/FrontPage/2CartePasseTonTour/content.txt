@@ -1,0 +1,16 @@
+!*> Liens techniques
+!path Uno.Feature\bin\${TARGET}\Uno.Feature.dll
+!path Uno.Feature\bin\${TARGET}\*.dll
+!define TEST_SYSTEM {slim}
+|Import     |
+|Uno.Feature|
+*!
+!1 La carte « Passer / Passe ton tour »
+Lorsque cette carte est jouée, le joueur suivant doit passer son tour. Cette carte ne peut être jouée que sur une carte de même couleur ou sur une carte « Passer / Passe ton tour ». Si cette carte est retournée en début de jeu, le joueur à gauche du donneur passe son tour et c'est au joueur suivant de  commencer.
+!2 Exemple avec un passe ton tour
+!img ./files/images/Jump.png
+|script|Etant donné la dispositon des joueurs A,B ,C ,D      |
+|ensure|Si la carte talon est        |un 9 rouge             |
+|check |Alors c'est le tour du joueur|A                      |
+|ensure|Si le joueur                 |A|pose|un "passe" rouge|
+|check |Alors c'est le tour du joueur|C                      |
