@@ -22,10 +22,25 @@ namespace Uno.Feature
 
 			_rules = new IRule[]
 			{				
-				new PlayCardPushCard(_playedCardSet),
+				//new InterruptionStealTurn(_turn),				
+				new PlayCardPushCard(playedCardSet),
 				new PlayCardUpdateTurnToNextPlayer(_turn),				
-				//new JumpUpdateTurnToNextPlayer(_turn),
+				//new CumulSameCardBehaviour(
+				//	new IRule[] {						
+						new JumpUpdateTurnToNextPlayer(_turn),
+				//		},
+				//	playedCardSet
+				//),
 			};
+		}
+
+		private bool CanPlayCommand(Player player, UnoCard card)
+		{
+			return (PlayerToPlay == player && (card.Id == Last.Id 
+			                                   || card.Color == Last.Color
+			                                   || card.IsWild))
+				//|| (card.Equals(Last))
+				;
 		}
 
 		public UnoCard Last
@@ -33,7 +48,7 @@ namespace Uno.Feature
 			get { return _playedCardSet.Peek(); }
 		}
 
-		public Player PlayerToPlay() { return _turn.PlayerToPlay; } 
+		public Player PlayerToPlay { get { return _turn.PlayerToPlay; } }
 
 		public List<Player> Players
 		{
@@ -41,17 +56,9 @@ namespace Uno.Feature
 			get { return _players; }
 		}
 
-		public PlayOperation PlayOperationFor(string name)
+		public PlayOperation Player(string name)
 		{
 			return new PlayOperation(_players.First(s => s.Name == name), PlayCommand, CanPlayCommand);
-		}
-
-		private bool CanPlayCommand(Player player, UnoCard card)
-		{
-			return (PlayerToPlay() == player && (card.Id == Last.Id 
-						|| card.Color == Last.Color
-						|| card.IsWild))
-						|| (card.Equals(Last));
 		}
 
 		private void PlayCommand(Player player, UnoCard card)
