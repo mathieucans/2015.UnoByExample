@@ -1,0 +1,16 @@
+!*> Liens techniques
+!path Uno.Feature\bin\${TARGET}\Uno.Feature.dll
+!path Uno.Feature\bin\${TARGET}\*.dll
+!define TEST_SYSTEM {slim}
+|Import     |
+|Uno.Feature|
+*!
+!1 Le joueur qui se trompe prend deux cartes et perd son tour
+
+|script|Etant donné la dispositon des joueurs A,B ,C ,D   |
+|ensure|Si la carte talon est        |un 9 rouge          |
+|check |Alors c'est le tour du joueur|A                   |
+|ensure|Si le joueur                 |A|pose  |un 6 jaune |
+|ensure|Alors le joueur              |A|prends deux cartes|
+|check |Et la carte talon est        |un 9 rouge          |
+|check |Et c'est le tour du joueur   |B                   |

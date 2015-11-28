@@ -12,9 +12,9 @@ namespace Uno.Feature
 			_deck = new Stack<UnoCard>();
 			_unoGame = new UnoGame(_deck, "A", "B", "C", "D");
 		}
-		public bool SiLaCarteTalonEst(UnoCardParser parser)
+		public bool SiLaCarteTalonEst(UnoCardParser cardParser)
 		{
-			_deck.Push(parser.Card);
+			_deck.Push(cardParser.Card);
 			return true;
 		}
 
@@ -37,6 +37,22 @@ namespace Uno.Feature
 		public string AlorsCestLetourDuJoueur()
 		{
 			return _unoGame.PlayerToPlay.Name;
+		}
+
+		public string EtCestLetourDuJoueur()
+		{
+			return AlorsCestLetourDuJoueur();
+		}
+
+		public bool Alorslejoueurprendsdeuxcartes(string name)
+		{
+			return true;
+		}
+
+		public UnoCardParser Etlacartetalonest()
+		{
+			var card = _deck.Peek();
+			return new UnoCardParser(card.Id, card.Color);
 		}
 	}
 }

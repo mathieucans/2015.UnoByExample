@@ -1,19 +1,17 @@
-﻿using System;
-
-namespace Uno.Feature
+﻿namespace Uno.Feature
 {
 	internal class PlayCardUpdateTurnToNextPlayer : IRule
 	{
-		private Turn _turn;
+		private Turn turn;
 
 		public PlayCardUpdateTurnToNextPlayer(Turn turn)
 		{
-			_turn = turn;
+			this.turn = turn;
 		}
 
 		public void Apply(Player player, UnoCard card)
 		{
-			_turn.IncTurn();
+			turn.IncTurn();			
 		}
 	}
 }

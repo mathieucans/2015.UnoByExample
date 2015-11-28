@@ -2,7 +2,8 @@
 !img ./files/images/UNO_Karten.jpg
  * [[Règles de base][>1ReglesDeBase]]
  * [[La carte « Passer / Passe ton tour »][>2CartePasseTonTour]]
- * [[Règles interruption][>3Interruption]]
+ * [[Règle interruption][>3Interruption]]
+ * [[Le joueur qui se trompe prend deux cartes][>4JoueurSeTrompePrendDeuxCartes]]
 
 ----
 !contents -R2 -g -f

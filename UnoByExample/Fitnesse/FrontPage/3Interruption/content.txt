@@ -7,36 +7,38 @@
 *!
 !1 La règle d'interruption 
 
-Un joueur qui a une carte de même couleur et de même numéro que la carte talon, peut la poser même si ce n'est pas son tour.
+Un joueur qui a la même carte même couleur et même numéro que la carte talon, peut la poser même si ce n'est pas son tour.
 Il "vole" alors le tour du joueur et c'est au joueur directement à sa droite ou à sa gauche de jouer selon le sens du jeux au moment de l'interruption.
-!*< hide
-!2 Exemple d'interruption avec un 8 rouge
-|script|Etant donné la dispositon des joueurs A, B ,C ,D|
-|ensure|Si la carte talon est         |un 9 rouge       |
-|ensure|Si le joueur                  |A|pose|un 8 rouge|
-|ensure|Si le joueur                  |D|pose|un 8 rouge|
-|check |Alors c'est le tour du joueur |A                |
+
+
+!2 Exemple d'interruption avec 8 rouge
+|script|Etant donné la dispositon des joueurs A,B ,C ,D|
+|ensure|Si la carte talon est     |un 9 rouge             |
+|ensure|Si le joueur              |A|pose|un 8 rouge      |
+|ensure|Si le joueur              |D|pose|un 8 rouge|
+|check |Alors c'est le tour du joueur|A                      |
 
 
 !2 Exemple interruption avec cumul des "passe ton tour"
-|Comment                                                     |
-|script|Etant donné la dispositon des joueurs A,B ,C ,D      |
-|ensure|Si la carte talon est        |un 9 rouge             |
-|ensure|Si le joueur                 |A|pose|un 8 rouge      |
-|ensure|Si le joueur                 |B|pose|un "passe" rouge|
-|ensure|Si le joueur                 |C|pose|un "passe" rouge|
+|script|Etant donné la dispositon des joueurs A,B ,C ,D|
+|ensure|Si la carte talon est     |un 9 rouge             |
+|ensure|Si le joueur              |A|pose|un 8 rouge      |
+|ensure|Si le joueur              |B|pose|un "passe" rouge|
+|ensure|Si le joueur              |C|pose|un "passe" rouge|
 |check |Alors c'est le tour du joueur|B                      |
 
+!*< hide
+
 
 !2 Exemple interruption avec cumul des "passe ton tour"
-|Comment                                                     |
-|script|Etant donné la dispositon des joueurs A,B ,C ,D      |
-|ensure|Si la carte talon est        |un 9 rouge             |
-|ensure|Si le joueur                 |A|pose|un 8 rouge      |
-|ensure|Si le joueur                 |B|pose|un "passe" rouge|
-|ensure|Si le joueur                 |C|pose|un "passe" rouge|
-|ensure|Si le joueur                 |A|pose|un "passe" rouge|
-|check |Alors C'est le tour du joueur|A                      |
+|Comment|
+|script|Etant donné la dispositon des joueurs A,B ,C ,D|
+|ensure|Si la carte talon est     |un 9 rouge             |
+|ensure|Si le joueur              |A|pose|un 8 rouge      |
+|ensure|Si le joueur              |B|pose|un "passe" rouge|
+|ensure|Si le joueur              |C|pose|un "passe" rouge|
+|ensure|Si le joueur              |A|pose|un "passe" rouge|
+|check |Alors c'est le tour du joueur|A                      |
 
 
 *!

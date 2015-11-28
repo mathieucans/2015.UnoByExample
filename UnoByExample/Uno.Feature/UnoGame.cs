@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Uno.Feature
@@ -22,25 +23,16 @@ namespace Uno.Feature
 
 			_rules = new IRule[]
 			{				
-				//new InterruptionStealTurn(_turn),				
-				new PlayCardPushCard(playedCardSet),
+				new InterruptionStealTurn(_turn),				
+				new PlayCardPushCardIfAllowed(playedCardSet, CanPlayCommand),
 				new PlayCardUpdateTurnToNextPlayer(_turn),				
-				//new CumulSameCardBehaviour(
-				//	new IRule[] {						
+				new CumulSameCardBehaviour(
+					new IRule[] {						
 						new JumpUpdateTurnToNextPlayer(_turn),
-				//		},
-				//	playedCardSet
-				//),
+						},
+					playedCardSet
+				),
 			};
-		}
-
-		private bool CanPlayCommand(Player player, UnoCard card)
-		{
-			return (PlayerToPlay == player && (card.Id == Last.Id 
-			                                   || card.Color == Last.Color
-			                                   || card.IsWild))
-				//|| (card.Equals(Last))
-				;
 		}
 
 		public UnoCard Last
@@ -61,12 +53,40 @@ namespace Uno.Feature
 			return new PlayOperation(_players.First(s => s.Name == name), PlayCommand, CanPlayCommand);
 		}
 
+		private bool CanPlayCommand(Player player, UnoCard card)
+		{
+			return (PlayerToPlay == player && (card.Id == Last.Id 
+						|| card.Color == Last.Color
+						|| card.IsWild))
+						|| (card.Equals(Last));
+		}
+
 		private void PlayCommand(Player player, UnoCard card)
 		{
 			foreach (var rule in _rules)
 			{
 				rule.Apply(player, card);				
 			}		
+		}
+	}
+
+	public class PlayCardPushCardIfAllowed : IRule
+	{
+		private readonly Stack<UnoCard> _playedCardSet;
+		private readonly Func<Player, UnoCard, bool> _canPlayCommand;
+
+		public PlayCardPushCardIfAllowed(Stack<UnoCard> playedCardSet, Func<Player, UnoCard, bool> canPlayCommand)
+		{
+			_playedCardSet = playedCardSet;
+			_canPlayCommand = canPlayCommand;
+		}
+
+		public void Apply(Player player, UnoCard card)
+		{
+			if (_canPlayCommand(player, card))
+			{
+				_playedCardSet.Push(card);
+			}
 		}
 	}
 }

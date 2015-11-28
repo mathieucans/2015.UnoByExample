@@ -17,7 +17,7 @@ namespace Uno.Feature
 
 		public void Plays(UnoCard card)
 		{
-			if (canPlayCommand(player, card))
+			//if (canPlayCommand(player, card))
 			{
 				playCommand(player, card);
 			}
@@ -25,7 +25,7 @@ namespace Uno.Feature
 
 		internal bool CanPlay(UnoCard unoCard)
 		{
-			return canPlayCommand(player, unoCard);
+			return true; //canPlayCommand(player, unoCard);
 		}
 	}
 }
